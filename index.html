@@ -1,0 +1,690 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thin Ice | amoradears</title>
+    <style>
+      :root {
+        --bg: #f8eef4;
+        --panel: #f8f5ea;
+        --panel-2: #edf2d9;
+        --line: #c9c59d;
+        --pink: #f4b8cf;
+        --rose: #d97ca8;
+        --text: #645a60;
+        --soft: #8d8489;
+        --mint: #dce8c0;
+        --shadow: 0 8px 20px rgba(170, 146, 162, 0.18);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Trebuchet MS", "Verdana", sans-serif;
+        color: var(--text);
+        background:
+          radial-gradient(
+            circle at top left,
+            rgba(255, 255, 255, 0.65),
+            transparent 24%
+          ),
+          linear-gradient(180deg, #f7e8ef 0%, #f4edf6 35%, #eef5df 100%);
+        min-height: 100vh;
+        padding: 26px;
+      }
+
+      .frame {
+        max-width: 1180px;
+        margin: 0 auto;
+        border: 2px solid var(--line);
+        background: rgba(255, 255, 255, 0.38);
+        padding: 14px;
+        box-shadow: var(--shadow);
+      }
+
+      .top-banner {
+        position: relative;
+        min-height: 210px;
+        border: 2px solid var(--line);
+        overflow: hidden;
+        background:
+          linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.6),
+            rgba(255, 255, 255, 0.15)
+          ),
+          url("thinice.png") center/cover no-repeat;
+      }
+
+      .top-banner::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.22),
+          rgba(255, 255, 255, 0.08)
+        );
+        pointer-events: none;
+      }
+
+      .banner-inner {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 20px;
+        min-height: 210px;
+        padding: 22px;
+      }
+
+      .site-title {
+        max-width: 360px;
+        filter: drop-shadow(0 2px 8px rgba(255, 255, 255, 0.8));
+      }
+
+      .cover-caption {
+        background: rgba(248, 245, 234, 0.85);
+        border: 1px solid var(--line);
+        padding: 12px 16px;
+        max-width: 360px;
+        font-size: 13px;
+        line-height: 1.6;
+        text-align: right;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: 280px 1fr 280px;
+        gap: 14px;
+        margin-top: 14px;
+      }
+
+      .card {
+        background: var(--panel);
+        border: 2px solid var(--line);
+        box-shadow: var(--shadow);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .card.pad {
+        padding: 16px;
+      }
+
+      .ribbon {
+        display: inline-block;
+        font-size: 12px;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        background: linear-gradient(180deg, #ffe6f0, #f8cadf);
+        border: 1px solid var(--line);
+        color: var(--rose);
+        padding: 6px 10px;
+        margin-bottom: 10px;
+      }
+
+      .profile-box {
+        background: linear-gradient(180deg, #eef3d9, #f7f2e8);
+      }
+
+      .portrait {
+        width: 100%;
+        aspect-ratio: 4 / 5;
+        object-fit: cover;
+        border-bottom: 2px solid var(--line);
+        display: block;
+        background: #e8e8e8;
+      }
+
+      .name-logo {
+        max-width: 180px;
+        display: block;
+        margin: 14px auto 10px;
+        transform: rotate(-2deg);
+        filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.08));
+      }
+
+      @media (max-width: 560px) {
+        .name-logo {
+          max-width: 140px;
+          margin: 10px auto 6px;
+          transform: rotate(-1deg);
+        }
+      }
+
+      .mini-divider {
+        height: 14px;
+        background: url("lovebiru.png") center/contain repeat-x;
+        opacity: 0.8;
+        margin: 12px 0;
+      }
+
+      .facts {
+        font-size: 13px;
+        line-height: 1.8;
+      }
+
+      .facts b {
+        color: #7a5f6d;
+      }
+
+      .menu .btn {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        width: 100%;
+        margin-bottom: 10px;
+        padding: 12px 14px;
+        border: 1px solid var(--line);
+        background: linear-gradient(180deg, #edf4db, #e6edcf);
+        color: var(--text);
+        text-decoration: none;
+        font-size: 14px;
+        transition:
+          transform 0.18s ease,
+          background 0.18s ease;
+      }
+
+      .menu .btn:hover {
+        transform: translateY(-2px);
+        background: linear-gradient(180deg, #f8e5ef, #f3d3e2);
+      }
+
+      .menu .btn img {
+        width: 22px;
+        height: 22px;
+        object-fit: contain;
+        flex: 0 0 auto;
+      }
+
+      .intro {
+        text-align: center;
+        line-height: 1.8;
+        font-size: 14px;
+      }
+
+      .intro h2,
+      .story h2,
+      .extras h2,
+      .playlist h2 {
+        margin: 0 0 10px;
+        font-size: 26px;
+        line-height: 1;
+        color: var(--rose);
+        letter-spacing: 1px;
+      }
+
+      .story-layout {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 14px;
+        margin-top: 14px;
+      }
+
+      .story {
+        background: linear-gradient(180deg, #faf7ef 0%, #f7f1e8 100%);
+      }
+
+      .chapter {
+        border: 1px dashed #cfbfd0;
+        background: rgba(255, 255, 255, 0.55);
+        padding: 16px;
+        margin-bottom: 14px;
+        position: relative;
+      }
+
+      .chapter::before {
+        content: "";
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        width: 42px;
+        height: 42px;
+        background: url("cat.png") center/contain no-repeat;
+        opacity: 0.25;
+      }
+
+      .chapter-tag {
+        display: inline-block;
+        padding: 4px 10px;
+        font-size: 11px;
+        letter-spacing: 1.4px;
+        text-transform: uppercase;
+        color: #8f6580;
+        background: #fbe4ee;
+        border: 1px solid #d7b2c5;
+        margin-bottom: 10px;
+      }
+
+      .chapter-title {
+        font-size: 20px;
+        margin: 0 0 10px;
+        color: #7d5a70;
+      }
+
+      .chapter p {
+        margin: 0 0 12px;
+        line-height: 1.95;
+        font-size: 15px;
+        text-align: justify;
+      }
+
+      .quote-box {
+        border-left: 4px solid var(--pink);
+        background: #fff8fb;
+        padding: 12px 14px;
+        margin: 12px 0;
+        font-style: italic;
+        line-height: 1.8;
+      }
+
+      .bilingual-note {
+        margin-top: 12px;
+        padding: 14px;
+        border: 1px solid var(--line);
+        background: linear-gradient(180deg, #eef3db, #f8f4e9);
+        font-size: 13px;
+        line-height: 1.8;
+      }
+
+      .bilingual-note b {
+        color: var(--rose);
+      }
+
+      .side-stack {
+        display: grid;
+        gap: 14px;
+      }
+
+      .stamp {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        flex-wrap: wrap;
+        padding-top: 4px;
+      }
+
+      .stamp img {
+        width: 74px;
+        height: 74px;
+        object-fit: contain;
+        image-rendering: auto;
+      }
+
+      .mood-list {
+        font-size: 13px;
+        line-height: 1.9;
+      }
+
+      .mood-list li {
+        margin-bottom: 6px;
+      }
+
+      .scene-list {
+        display: grid;
+        gap: 10px;
+      }
+
+      .scene-item {
+        border: 1px solid var(--line);
+        padding: 10px 12px;
+        background: rgba(255, 255, 255, 0.48);
+        font-size: 13px;
+        line-height: 1.7;
+      }
+
+      .gallery {
+        margin-top: 14px;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+      }
+
+      .gallery .tile {
+        border: 2px solid var(--line);
+        background: linear-gradient(180deg, #f8f3e7, #eef3da);
+        min-height: 110px;
+        display: grid;
+        place-items: center;
+        overflow: hidden;
+      }
+
+      .gallery img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .footer {
+        margin-top: 14px;
+        border: 2px solid var(--line);
+        background: #eaf0d4;
+        text-align: center;
+        padding: 18px;
+        font-size: 13px;
+        line-height: 1.8;
+      }
+
+      .blink {
+        animation: blink 1.5s step-end infinite;
+      }
+
+      @keyframes blink {
+        50% {
+          opacity: 0.45;
+        }
+      }
+
+      @media (max-width: 980px) {
+        .grid,
+        .story-layout {
+          grid-template-columns: 1fr;
+        }
+
+        .gallery {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .banner-inner {
+          align-items: flex-start;
+          justify-content: flex-end;
+          flex-direction: column;
+        }
+      }
+
+      @media (max-width: 560px) {
+        body {
+          padding: 10px;
+        }
+
+        .frame {
+          padding: 8px;
+        }
+
+        .gallery {
+          grid-template-columns: 1fr;
+        }
+
+        .intro h2,
+        .story h2,
+        .extras h2,
+        .playlist h2 {
+          font-size: 21px;
+        }
+
+        .chapter p {
+          font-size: 14px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="frame">
+      <header class="top-banner">
+        <div class="banner-inner">
+          <img class="site-title" src="thinice.png" alt="Thin Ice title" />
+          <div class="cover-caption">
+            <div><b>Amoradears presents</b></div>
+            <div>
+              Website only for <strong>Thin Ice</strong> Alternative Universe
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="grid">
+        <section>
+          <div class="card pad intro" id="home">
+            <div class="ribbon">welcome note</div>
+            <h2>SUMMARY ♡</h2>
+            <p>
+              Elio Aalto has spent most of his life at the edge of the rink,
+              watching a world he was never allowed to enter. What once felt
+              close slowly became something distant after an accident changed
+              everything at home. While Elio stayed where he was, Soren Virel
+              kept moving forward, growing into a skater who seemed to belong on
+              the ice without question.
+            </p>
+            <p>
+              At sixteen, Elio finally steps onto the ice, long after everyone
+              else has already begun. What starts as a quiet attempt to follow
+              Soren turns into something more personal. As the distance between
+              them shifts, Elio begins to understand that this was never just
+              about catching up, but about finding a place that is finally his
+              own.
+            </p>
+          </div>
+
+          <div class="story-layout">
+            <article class="card pad story" id="story">
+              <div class="ribbon">HAPPY READING!</div>
+              <h2>Thin Ice</h2>
+
+              <section class="chapter" id="scene-1">
+                <div class="chapter-tag">scene i</div>
+                <h3 class="chapter-title">
+                  Es yang Pertama Kali Bukan Miliknya
+                </h3>
+                <p>
+                  Elio pertama kali mengenal es bukan karena dirinya sendiri.
+                  Itu selalu tentang Soren. Tentang bagaimana anak itu berdiri
+                  di atas permukaan licin tanpa terlihat ragu, seolah-olah
+                  tubuhnya memang diciptakan untuk bergerak di sana. Pisau
+                  sepatunya menggores es dengan suara tipis yang berulang
+                  seperti sesuatu yang hanya bisa dimengerti oleh orang-orang
+                  tertentu.
+                </p>
+                <p>
+                  Elio duduk di bangku penonton yang dinginnya merambat pelan
+                  menembus celana, sampai ke kulit. Dia tidak pernah benar-benar
+                  sadar sejak kapan jemarinya berhenti bergerak, atau kapan
+                  napasnya mulai mengikuti setiap gerakan Soren di atas rink.
+                  Dia hanya menonton. Elio menonton terlalu fokus untuk anak
+                  seusianya.
+                </p>
+                <div class="quote-box">
+                  “Some people step onto the ice. Others only learn how to
+                  breathe beside it.”
+                </div>
+              </section>
+
+              <section class="chapter" id="scene-2">
+                <div class="chapter-tag">scene ii</div>
+                <h3 class="chapter-title">Ajakan yang Datang Terlalu Mudah</h3>
+                <p>
+                  Kadang Soren akan berhenti di dekat pembatas, membuka sarung
+                  tangan dengan gerakan terburu-buru, napasnya masih tersengal,
+                  pipinya merah karena udara dingin. “El, esnya lagi bagus
+                  banget hari ini,” katanya suatu kali, sambil menyenderkan siku
+                  di pembatas. “Sayang kalau cuma kamu tontonin sampai habis.”
+                </p>
+                <p>
+                  Elio tidak langsung menjawab. Tangannya tanpa sadar
+                  mencengkeram ujung lengan jaketnya sendiri, menariknya sedikit
+                  lebih rapat, seolah itu bisa menahan sesuatu yang tidak ingin
+                  keluar. Anak itu tidak mengetahui seberapa sakitnya kalimat
+                  yang baru saja dia lontarkan kepada Elio. Tidak sadar betapa
+                  inginnya Elio bermain dengan Soren di atas rink, namun tidak
+                  bisa.
+                </p>
+                <div class="quote-box">
+                  “Aku jatuh nanti.”<br />
+                  “Aku pegangin.”
+                </div>
+                <p>
+                  Jawabannya datang terlalu cepat seolah-olah ia sangat yakin
+                  atas ucapannya. Elio mengangkat pandangannya. Untuk sesaat,
+                  dia benar-benar mempertimbangkannya. Elio membayangkan satu
+                  langkah kecil ke atas es, berdiri di samping Soren, mencoba
+                  memahami dunia yang selama ini hanya dia lihat dari luar. Dia
+                  hampir berdiri.
+                </p>
+                <p>
+                  Lalu jemarinya mengendur. Pandangannya turun lagi ke lantai
+                  putih yang terlalu terang. Selalu ada sesuatu yang menahannya.
+                  Bukan cuma takut. Lebih seperti perasaan bahwa dunia itu tidak
+                  pernah benar-benar disiapkan untuknya.
+                </p>
+              </section>
+
+              <section class="chapter" id="scene-3">
+                <div class="chapter-tag">scene iii</div>
+                <h3 class="chapter-title">
+                  Rumah yang Pernah Penuh Suara Baru
+                </h3>
+                <p>
+                  Jadi dia tetap di tempatnya dan menonton betapa indahnya Soren
+                  bermain di atas es. Dan entah bagaimana, itu terasa seperti
+                  peran yang sudah dia pahami dengan baik. Kakaknya pernah
+                  berdiri di sana juga. Tidak sehalus Soren, tidak seanggun itu,
+                  tapi cukup untuk membuat orang-orang berhenti lebih lama dari
+                  biasanya. Cukup untuk membuat ibunya tersenyum dengan cara
+                  yang jarang Elio lihat.
+                </p>
+                <p>
+                  Elio tahu sekali, itu adalah simbol senyum yang bangga akan
+                  suatu hal. Untuk sementara waktu, rumah mereka dipenuhi
+                  suara-suara baru. Jadwal latihan ditempel di kulkas. Sepatu
+                  skating diletakkan sembarangan di dekat pintu. Percakapan
+                  makan malam berubah menjadi hal-hal yang Elio tidak sepenuhnya
+                  mengerti, tapi tetap dia dengarkan.
+                </p>
+                <p>
+                  Tanpa sadar, es mulai terasa lebih dekat. Seperti sesuatu yang
+                  mungkin, suatu hari nanti, bisa dia sentuh.
+                </p>
+                </div>
+              </section>
+
+              <section class="chapter" id="scene-4">
+                <div class="chapter-tag">scene iv</div>
+                <h3 class="chapter-title">
+                  Hal yang Tidak Dijelaskan Sampai Tuntas
+                </h3>
+                <p>
+                  Sampai suatu hari, semuanya berhenti. Tidak ada yang
+                  benar-benar menjelaskan dengan jelas. Hanya ada panggilan
+                  telepon di sore hari, suara ibunya yang berubah terlalu cepat,
+                  dan udara rumah yang mendadak terasa berat, seolah-olah ada
+                  sesuatu yang tidak terlihat tapi memenuhi setiap sudut
+                  ruangan.
+                </p>
+                <p>
+                  Elio berdiri di ambang pintu. Tangannya menggantung di samping
+                  tubuhnya, kaku, sementara dari dalam dia mendengar suara yang
+                  tidak dia kenali. Kakaknya pulang lebih cepat dari seharusnya.
+                  Langkahnya tidak lagi sama.
+                </p>
+                <div class="quote-box">
+                  Sejak saat itu, es berubah menjadi sesuatu yang tidak boleh
+                  disentuh.
+                </div>
+                <p>
+                  “Cukup satu orang saja,” kata ibunya suatu malam, tanpa
+                  menatapnya. Suaranya pelan, tapi tidak memberi ruang untuk
+                  dibantah. “Kita tidak perlu mengulang itu lagi.”
+                </p>
+                <p>
+                  Elio membuka mulutnya, sedikit. Lalu menutupnya kembali.
+                  Tangannya kembali mencengkeram ujung lengan bajunya, lebih
+                  kuat kali ini, sampai buku-buku jarinya memutih. Tapi tidak
+                  ada kata yang keluar. Dia hanya berhenti bertanya.
+                </p>
+                </div>
+              </section>
+
+              <section class="chapter" id="scene-5">
+                <div class="chapter-tag">scene v</div>
+                <h3 class="chapter-title">Menjadi Ahli dalam Jarak</h3>
+                <p>
+                  Dan Soren tetap meluncur. Lebih cepat dan lebih jauh. Seolah
+                  tidak ada yang pernah benar-benar berubah. Sesekali dia masih
+                  menoleh ke arah bangku penonton ke arah Elio dengan kebiasaan
+                  lama yang belum sepenuhnya hilang. Tapi Elio sudah belajar
+                  sesuatu yang baru.
+                </p>
+                <p>
+                  Dia mulai memperhatikan hal-hal kecil. Cara kaki Soren sedikit
+                  goyah sebelum mendarat dari lompatan. Cara bahunya turun
+                  sepersekian detik terlalu cepat saat berputar. Goresan tipis
+                  yang tidak lurus sempurna di atas es, hal-hal yang mungkin
+                  tidak dilihat orang lain. Itu satu-satunya cara dia mendekat.
+                  Tanpa harus benar-benar masuk.
+                </p>
+                <p>
+                  Dan lama-lama, Elio jadi sangat ahli dalam satu hal. Berdiri
+                  di pinggir, menonton, dan berpura-pura itu sudah cukup.
+                </p>
+                <div class="quote-box">
+                  “He became fluent in nearness without touch, in devotion
+                  without permission.”
+                </div>
+                <div class="bilingual-note">
+                </div>
+              </section>
+            </article>
+
+            <aside class="side-stack"></aside>
+          </div>
+
+          <section class="gallery" id="gallery">
+            <div class="tile"><img src="lovemerah.png" alt="gallery 1" /></div>
+            <div class="tile"><img src="sarbitbiru.png" alt="gallery 2" /></div>
+            <div class="tile"><img src="lovebiru.png" alt="gallery 3" /></div>
+            <div class="tile"><img src="cat.png" alt="gallery 4" /></div>
+          </section>
+        </section>
+
+        <aside class="card pad menu">
+          <div class="ribbon">social</div>
+          <a class="btn" href="https://x.com/amoradears" target="_blank"
+            ><span>X</span><img src="lovebiru.png" alt="icon"
+          /></a>
+          <a
+            class="btn"
+            href="https://alterspring.org/@amoradears"
+            target="_blank"
+            ><span>Alterspring</span><img src="sarbitbiru.png" alt="icon"
+          /></a>
+          <a
+            class="btn"
+            href="https://padlet.com/amoradears/house-of-amora-9dbudcera2u0o3jc"
+            target="_blank"
+            ><span>Padlet</span><img src="cat.png" alt="icon"
+          /></a>
+          <a
+            class="btn"
+            href="https://www.tiktok.com/@amoradears"
+            target="_blank"
+            ><span>Tiktok</span><img src="lovebiru.png" alt="icon"
+          /></a>
+          <a
+            class="btn"
+            href="https://www.wattpad.com/amoradears?utm_source=web&utm_medium=twitter&utm_content=share_profile&wp_uname=amoradears"
+            target="_blank"
+            ><span>Wattpad</span><img src="sarbitbiru.png" alt="icon"
+          /></a>
+          <div class="mini-divider"></div>
+          </div>
+        </aside>
+      </main>
+
+      <footer class="footer">
+        <div>
+          <b>Thin Ice</b> · a wonxin fiction long alternative universe.
+        </div>
+        <div>
+          Made for <b>amoradears</b> and <b>readers</b> with some love and dedication.
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
